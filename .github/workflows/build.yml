@@ -9,6 +9,9 @@ jobs:
   build:
     runs-on: ubuntu-24.04
     steps:
+      - name: Get current date
+        id: date
+        run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
       - name: Prepare
         run: mkdir output
       - name: Build Vauxite
@@ -16,4 +19,6 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v2
         with:
+          tag_name: ${{ steps.date.outputs.date }}
+          name: Build on ${{ steps.date.outputs.date }}
           files: output/*.iso
