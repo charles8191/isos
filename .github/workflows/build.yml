@@ -1,0 +1,19 @@
+name: Build
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: 0 0 1 * *
+    
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Build Vauxite
+        run: |
+          mkdir output
+          podman run --privileged -v "$(pwd)/output":/output -it quay.io/charles2/vauxiteiso
+      - uses: actions/upload-artifact@v4
+        with:
+          name: vauxite
+          path: output/vauxite.iso
