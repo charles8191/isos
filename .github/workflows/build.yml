@@ -25,4 +25,3 @@ jobs:
           name: Build on ${{ steps.date.outputs.date }}
           files: |
             output/*.iso
-            pos/pos-*.iso
