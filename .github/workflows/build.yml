@@ -17,9 +17,7 @@ jobs:
       - name: Build Vauxite
         run: podman run --privileged -v "$(pwd)/output":/output quay.io/charles2/vauxiteiso
       - name: Build PupaOS
-        run: |
-          git clone https://gitlab.com/pupahq/os/iso.git pos
-          docker run -v "$(pwd)/pos":/pos quay.io/centos/centos:stream9 bash -c "dnf install git lorax wget make -y && cd /pos && make c9s"
+        run: podman run --privileged -v "$(pwd)/output":/output quay.io/charles2/pupaosiso
       - name: Release
         uses: softprops/action-gh-release@v2
         with:
