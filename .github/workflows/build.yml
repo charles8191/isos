@@ -19,7 +19,7 @@ jobs:
       - name: Build PupaOS
         run: |
           git clone https://gitlab.com/pupahq/os/iso.git pos
-          docker run -v pos:/pos quay.io/centos/centos:stream9 bash -c "dnf install git lorax wget make -y && cd pos && make c9s"
+          docker run -v " $(pwd)/pos":/pos quay.io/centos/centos:stream9 bash -c "dnf install git lorax wget make -y && cd /pos && make c9s"
       - name: Release
         uses: softprops/action-gh-release@v2
         with:
