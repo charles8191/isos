@@ -14,10 +14,8 @@ jobs:
         run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
       - name: Prepare
         run: mkdir output
-      - name: Build Vauxite
-        run: podman run --privileged -v "$(pwd)/output":/output quay.io/charles2/vauxiteiso
       - name: Build PupaOS
-        run: podman run --privileged -v "$(pwd)/output":/output quay.io/charles2/pupaosiso
+        run: podman run --privileged -v "$(pwd)/output":/output registry.gitlab.com/pupahq/os/isov2
       - name: Release
         uses: softprops/action-gh-release@v2
         with:
