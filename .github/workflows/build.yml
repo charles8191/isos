@@ -12,7 +12,7 @@ jobs:
       - name: Get current date
         id: date
         run: |
-          echo "{date}={$(date +'%Y-%m-%d')}" >> $GITHUB_STATE
+          echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
       - name: Prepare
         run: mkdir output
       - name: Build PupaOS c9s
@@ -20,7 +20,7 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: ${{ env.date }}
-          name: Build on ${{ env.date }}
+          tag_name: ${{ steps.date.outputs.date }}
+          name: Build on ${{ steps.date.outputs.date }}
           files: |
             output/*.iso
