@@ -14,8 +14,8 @@ jobs:
         run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
       - name: Prepare
         run: mkdir output
-      - name: Build PupaOS a9
-        run: sudo podman run --privileged -v "$(pwd)/output":/output git.almalinux.org/pupaos/iso:a9
+      - name: Build PupaOS c9s
+        run: sudo podman run --privileged -v "$(pwd)/output":/output codeberg.org/pupaos/iso:c9s
       - name: Release
         uses: softprops/action-gh-release@v2
         with:
